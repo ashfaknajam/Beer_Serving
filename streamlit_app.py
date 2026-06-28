@@ -6,6 +6,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
+from pathlib import Path
 
 
 @st.cache_data
@@ -51,12 +52,16 @@ def main():
     st.set_page_config(page_title="Beer Servings Alcohol Predictor", page_icon="🍺")
     st.title("Beer Servings — Alcohol Consumption Predictor")
 
-    # welcome image (remote) — used to keep repo small
-    st.image(
-        "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1200&q=60",
-        caption="Welcome — Predict total litres of pure alcohol",
-        use_column_width=True,
-    )
+    # welcome image: display local welcome.jpg in repo root only (fallback to remote if missing)
+    local_img = Path("welcome.jpg")
+    if local_img.exists():
+        st.image(str(local_img), caption="Welcome — Predict total litres of pure alcohol", use_column_width=True)
+    else:
+        st.image(
+            "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1200&q=60",
+            caption="Welcome — Predict total litres of pure alcohol",
+            use_column_width=True,
+        )
 
     df = load_data()
 
