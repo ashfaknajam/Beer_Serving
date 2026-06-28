@@ -55,12 +55,12 @@ def main():
     # welcome image: display local welcome.jpg in repo root only (fallback to remote if missing)
     local_img = Path("welcome.jpg")
     if local_img.exists():
-        st.image(str(local_img), caption="Welcome — Predict total litres of pure alcohol", use_column_width=True)
+        st.image(str(local_img), caption="Welcome — Predict total litres of pure alcohol", width=700)
     else:
         st.image(
             "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=1200&q=60",
             caption="Welcome — Predict total litres of pure alcohol",
-            use_column_width=True,
+            width=700,
         )
 
     df = load_data()
